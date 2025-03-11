@@ -3,7 +3,7 @@ COMPILER	:= cc
 
 NAME		:= bsq
 
-FLAGS		:= -Wall -Wextra -Werror -I./heads -O3
+FLAGS		:= -Wall -Werror -Wextra -I./heads -O3
 
 SRCDIR		:= src
 HEADERS		:= heads
