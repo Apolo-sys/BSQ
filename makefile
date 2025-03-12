@@ -1,16 +1,28 @@
+COMPILER := cc
 
-COMPILER	:= cc
+NAME     := bsq
 
-NAME		:= bsq
+FLAGS    := -Wall -Werror -Wextra -I$(HEADERS) -O3
 
-FLAGS		:= -Wall -Werror -Wextra -I./heads -O3
+SRCDIR   := src
+HEADERS  := heads
+OBJDIR   := obj
 
-SRCDIR		:= src
-HEADERS		:= heads
+SRCS     := $(wildcard $(SRCDIR)/*.c)
+OBJS     := $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
-all:
-	$(COMPILER) $(SRCDIR)/*.c $(FLAGS) -o $(NAME)
+all: $(NAME)
+
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
+	$(COMPILER) $(FLAGS) -c $< -o $@
+
+$(NAME): $(OBJS)
+	$(COMPILER) $(FLAGS) $(OBJS) -o $(NAME)
+
 clean:
-	rm bsq && *.x
-.PHONY:
-	clean all
+	rm -rf $(OBJDIR) $(NAME)
+
+.PHONY: all clean
