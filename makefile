@@ -2,11 +2,11 @@ COMPILER := cc
 
 NAME     := bsq
 
-FLAGS    := -Wall -Werror -Wextra -I$(HEADERS) -O3
-
 SRCDIR   := src
 HEADERS  := heads
 OBJDIR   := obj
+
+FLAGS    := -Wall -Werror -Wextra -I$(HEADERS) -O3
 
 SRCS     := $(wildcard $(SRCDIR)/*.c)
 OBJS     := $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
